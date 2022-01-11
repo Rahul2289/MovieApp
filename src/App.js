@@ -6,6 +6,7 @@ import MovieDetail from "./components/moviedetails/MovieDetail";
 import PageNotFound from "./components/pagenotfound/PageNotFound";
 import Footer from "./components/footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./app.css";
 const App = () => {
   return (
     <div className="App">
@@ -13,7 +14,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/movies/:imdbId" element={<MovieDetail />} />
+          <Route path="/movie/:imdbId" element={<MovieDetail />} />
           <Route element={<PageNotFound />} />
         </Routes>
         <Footer />

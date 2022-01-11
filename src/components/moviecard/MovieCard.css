@@ -3,9 +3,16 @@
 }
 .card-item {
   width: 250px;
-  height: 380px;
+  min-height: 380px;
   border-radius: 5px;
   background: #e0e0e0;
+  margin: auto;
+  transition: all 0.3s;
+  height: 100%;
+}
+.card-item:hover {
+  transform: scale(1.01);
+  transition: all 0.3s;
 }
 img {
   width: 100%;

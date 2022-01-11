@@ -1,25 +1,46 @@
 import React from "react";
 import "./movielisting.css";
 import { useSelector } from "react-redux";
-import { getAllMovies } from "../../features/movies/MovieSlice";
+import { getAllMovies, getAllShows } from "../../features/movies/MovieSlice";
 import MovieCard from "./../moviecard/MovieCard";
+import { settings } from "./setting";
+import Slider from "react-slick";
 const MovieListing = () => {
   const movies = useSelector(getAllMovies);
-  let renderMovies = "";
-
+  const shows = useSelector(getAllShows);
+  let renderMovies,
+    renderShows = "";
   renderMovies =
     movies.Response === "True" ? (
-      movies.Search.map((movie, index) => {
-        return <MovieCard key={index} data={movie} />;
-      })
+      movies.Search.map((movie, index) => (
+        <MovieCard key={index} data={movie} />
+      ))
     ) : (
-      <div className="Error">Error</div>
+      <div className="">
+        <h3 style={{ textAlign: "center" }}>{shows.Error}</h3>
+      </div>
+    );
+  renderShows =
+    shows.Response === "True" ? (
+      shows.Search.map((movie, index) => <MovieCard key={index} data={movie} />)
+    ) : (
+      <div className="shows-error">
+        <h3 style={{ textAlign: "center" }}>{shows.Error}</h3>
+      </div>
     );
   return (
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2 style={{ textAlign: "center" }}>Movies</h2>
-        <div className="movie-container">{renderMovies}</div>
+        <div className="movie-container">
+          <Slider {...settings}>{renderMovies}</Slider>
+        </div>
+      </div>
+      <div className="show-list">
+        <h2 style={{ textAlign: "center" }}>Shows</h2>
+        <div className="movie-container">
+          <Slider {...settings}>{renderShows}</Slider>
+        </div>
       </div>
     </div>
   );
